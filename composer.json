@@ -1,0 +1,70 @@
+{
+    "name": "geof-dev/filament-web3-auth",
+    "description": "Web3 wallet authentication plugin for Filament v4",
+    "keywords": [
+        "laravel",
+        "filament",
+        "web3",
+        "metamask",
+        "ethereum",
+        "wallet",
+        "authentication"
+    ],
+    "homepage": "https://github.com/geof-dev/filament-web3-auth",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Geoffrey B.",
+            "email": "independence.dev.pro@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "filament/filament": "^4.0",
+        "kornrunner/keccak": "^1.1",
+        "simplito/elliptic-php": "^1.0",
+        "spatie/laravel-package-tools": "^1.16"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.14",
+        "nunomaduro/collision": "^8.1",
+        "orchestra/testbench": "^10.0",
+        "pestphp/pest": "^3.0",
+        "pestphp/pest-plugin-arch": "^3.0",
+        "pestphp/pest-plugin-laravel": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "GeofDev\\FilamentWeb3Auth\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GeofDev\\FilamentWeb3Auth\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@composer run prepare",
+        "prepare": "echo 'Ready!'",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GeofDev\\FilamentWeb3Auth\\FilamentWeb3AuthServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
