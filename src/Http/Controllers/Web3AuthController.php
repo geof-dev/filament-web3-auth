@@ -54,15 +54,24 @@ class Web3AuthController extends Controller
         $request->session()->forget('web3_auth_nonce');
 
         $userModel = $this->getUserModel();
-        $user = $userModel::where('eth_address', strtolower($address))->first();
+        $walletEmail = strtolower($address) . '@wallet.local';
+
+        $user = $userModel::where('eth_address', strtolower($address))
+            ->orWhere('email', $walletEmail)
+            ->first();
 
         if (! $user && $this->shouldAutoRegister()) {
             $user = $userModel::create([
                 'name' => $this->shortenAddress($address),
-                'email' => strtolower($address) . '@wallet.local',
+                'email' => $walletEmail,
                 'eth_address' => strtolower($address),
                 'password' => bcrypt(Str::random(32)),
             ]);
+        }
+
+        // Ensure eth_address is set if user was found by email
+        if ($user && ! $user->eth_address) {
+            $user->update(['eth_address' => strtolower($address)]);
         }
 
         if (! $user) {
