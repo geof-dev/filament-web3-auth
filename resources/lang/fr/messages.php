@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'or_continue_with' => 'ou continuer avec',
     'connect_with_wallet' => 'Connecter avec un portefeuille crypto',
     'connecting' => 'Connexion...',
 

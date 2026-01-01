@@ -55,7 +55,6 @@ public function panel(Panel $panel): Panel
             FilamentWeb3AuthPlugin::make()
                 ->autoRegister(true)      // Auto-create users on first login
                 ->showOnLogin(true)       // Show button on login page
-                ->showWalletPage(true)    // Show wallet tokens page
         );
 }
 ```
@@ -66,7 +65,6 @@ public function panel(Panel $panel): Panel
 |--------|-------------|---------|
 | `autoRegister(bool)` | Auto-create users on wallet login | `true` |
 | `showOnLogin(bool)` | Show connect button on login page | `true` |
-| `showWalletPage(bool)` | Register the wallet tokens page | `true` |
 | `signatureMessage(string)` | Custom signature message template | Config value |
 
 ## Configuration

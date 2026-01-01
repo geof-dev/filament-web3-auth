@@ -1,14 +1,9 @@
 @if(config('filament-web3-auth.enabled', true))
 <div class="mt-4">
-    <div class="relative flex items-center justify-center text-sm text-gray-500 dark:text-gray-400">
-        <span class="px-2 bg-white dark:bg-gray-900">{{ __('filament-web3-auth::messages.or_continue_with') }}</span>
-        <div class="absolute inset-x-0 top-1/2 h-px bg-gray-200 dark:bg-gray-700 -z-10"></div>
-    </div>
-
     <button
         type="button"
         id="web3-connect-btn"
-        class="mt-4 fi-btn relative grid-flow-col items-center justify-center font-semibold outline-none transition duration-75 focus-visible:ring-2 rounded-lg fi-color-custom fi-btn-color-gray fi-size-md fi-btn-size-md gap-1.5 px-3 py-2 text-sm inline-grid shadow-sm bg-white text-gray-950 hover:bg-gray-50 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 ring-1 ring-gray-950/10 dark:ring-white/20 w-full"
+        class="fi-btn fi-btn-color-gray w-full inline-flex items-center justify-center gap-2"
     >
         <svg class="w-5 h-5" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M36.0112 3.00049L22.1427 13.3083L24.6497 7.30269L36.0112 3.00049Z" fill="#E17726"/>
