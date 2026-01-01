@@ -65,6 +65,7 @@ public function panel(Panel $panel): Panel
 |--------|-------------|---------|
 | `autoRegister(bool)` | Auto-create users on wallet login | `true` |
 | `showOnLogin(bool)` | Show connect button on login page | `true` |
+| `showOnProfile(bool)` | Show wallet manager on profile page | `true` |
 | `signatureMessage(string)` | Custom signature message template | Config value |
 
 ## Configuration
