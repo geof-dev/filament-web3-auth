@@ -19,6 +19,7 @@ return [
     'invalid_signature' => 'Signature invalide.',
     'no_account_found' => 'Aucun compte trouvé pour cette adresse de portefeuille.',
     'wallet_already_linked' => 'Ce portefeuille est déjà lié à un autre compte.',
+    'wallet_mismatch' => 'L\'adresse du portefeuille ne correspond pas à votre portefeuille lié.',
     'no_wallet_to_unlink' => 'Aucun portefeuille à déconnecter.',
     'cannot_unlink_primary' => 'Impossible de déconnecter le portefeuille principal. Veuillez d\'abord ajouter un email.',
     'wallet_not_installed' => 'Veuillez installer MetaMask ou un autre portefeuille Web3.',

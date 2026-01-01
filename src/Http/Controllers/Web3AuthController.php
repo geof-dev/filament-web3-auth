@@ -131,7 +131,8 @@ class Web3AuthController extends Controller
             ], 422);
         }
 
-        $user->update(['eth_address' => strtolower($address)]);
+        $user->eth_address = strtolower($address);
+        $user->save();
 
         return response()->json([
             'success' => true,
@@ -141,11 +142,25 @@ class Web3AuthController extends Controller
 
     public function unlinkWallet(Request $request): JsonResponse
     {
+        $request->validate([
+            'address' => 'required|string|size:42',
+            'signature' => 'required|string',
+        ]);
+
         $user = $request->user();
+        $address = $request->input('address');
+        $signature = $request->input('signature');
+        $nonce = $request->session()->get('web3_auth_nonce');
 
         if (! $user->eth_address) {
             return response()->json([
                 'error' => __('filament-web3-auth::messages.no_wallet_to_unlink'),
+            ], 422);
+        }
+
+        if (strtolower($user->eth_address) !== strtolower($address)) {
+            return response()->json([
+                'error' => __('filament-web3-auth::messages.wallet_mismatch'),
             ], 422);
         }
 
@@ -155,7 +170,24 @@ class Web3AuthController extends Controller
             ], 422);
         }
 
-        $user->update(['eth_address' => null]);
+        if (! $nonce) {
+            return response()->json([
+                'error' => __('filament-web3-auth::messages.session_expired'),
+            ], 422);
+        }
+
+        $message = $this->buildSignatureMessage($nonce);
+
+        if (! $this->verifySignature($message, $signature, $address)) {
+            return response()->json([
+                'error' => __('filament-web3-auth::messages.invalid_signature'),
+            ], 422);
+        }
+
+        $request->session()->forget('web3_auth_nonce');
+
+        $user->eth_address = null;
+        $user->save();
 
         return response()->json([
             'success' => true,

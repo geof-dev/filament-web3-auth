@@ -19,6 +19,7 @@ return [
     'invalid_signature' => 'Invalid signature.',
     'no_account_found' => 'No account found for this wallet address.',
     'wallet_already_linked' => 'This wallet is already linked to another account.',
+    'wallet_mismatch' => 'The wallet address does not match your linked wallet.',
     'no_wallet_to_unlink' => 'No wallet to disconnect.',
     'cannot_unlink_primary' => 'Cannot disconnect primary wallet. Please add an email first.',
     'wallet_not_installed' => 'Please install MetaMask or another Web3 wallet.',

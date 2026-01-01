@@ -158,17 +158,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
             hideMessages();
 
+            if (typeof window.ethereum === 'undefined') {
+                showError('{{ __("filament-web3-auth::messages.wallet_not_installed") }}');
+                return;
+            }
+
             try {
                 disconnectBtn.disabled = true;
+
+                const provider = new ethers.BrowserProvider(window.ethereum);
+                const signer = await provider.getSigner();
+                const address = await signer.getAddress();
+
+                const signatureResponse = await fetch('{{ route("filament-web3-auth.signature") }}', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                    credentials: 'same-origin'
+                });
+
+                if (!signatureResponse.ok) {
+                    throw new Error('{{ __("filament-web3-auth::messages.failed_to_get_signature") }}');
+                }
+
+                const { message } = await signatureResponse.json();
+                const signature = await signer.signMessage(message);
 
                 const response = await fetch('{{ route("filament-web3-auth.wallet.unlink") }}', {
                     method: 'POST',
                     headers: {
+                        'Content-Type': 'application/json',
                         'Accept': 'application/json',
                         'X-CSRF-TOKEN': '{{ csrf_token() }}',
                         'X-Requested-With': 'XMLHttpRequest',
                     },
-                    credentials: 'same-origin'
+                    credentials: 'same-origin',
+                    body: JSON.stringify({ address, signature })
                 });
 
                 const result = await response.json();
@@ -180,7 +207,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     showError(result.error || '{{ __("filament-web3-auth::messages.wallet_unlink_failed") }}');
                 }
             } catch (error) {
-                showError('{{ __("filament-web3-auth::messages.auth_error") }}');
+                console.error('Wallet unlink error:', error);
+                if (error.code === 4001) {
+                    showError('{{ __("filament-web3-auth::messages.signature_rejected") }}');
+                } else {
+                    showError(error.message || '{{ __("filament-web3-auth::messages.auth_error") }}');
+                }
             } finally {
                 disconnectBtn.disabled = false;
             }
