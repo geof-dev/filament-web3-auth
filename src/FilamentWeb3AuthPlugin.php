@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Blade;
 
 class FilamentWeb3AuthPlugin implements Plugin
 {
-    protected bool $autoRegister = true;
+    protected bool $autoRegister = false;
 
     protected bool $showOnLogin = true;
 

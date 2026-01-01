@@ -21,7 +21,7 @@ return [
     | authenticate with a wallet address that doesn't exist in the database.
     |
     */
-    'auto_register' => env('FILAMENT_WEB3_AUTH_AUTO_REGISTER', true),
+    'auto_register' => env('FILAMENT_WEB3_AUTH_AUTO_REGISTER', false),
 
     /*
     |--------------------------------------------------------------------------
