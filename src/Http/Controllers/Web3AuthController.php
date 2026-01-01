@@ -61,17 +61,18 @@ class Web3AuthController extends Controller
             ->first();
 
         if (! $user && $this->shouldAutoRegister()) {
-            $user = $userModel::create([
-                'name' => $this->shortenAddress($address),
-                'email' => $walletEmail,
-                'eth_address' => strtolower($address),
-                'password' => bcrypt(Str::random(32)),
-            ]);
+            $user = new $userModel();
+            $user->name = $this->shortenAddress($address);
+            $user->email = $walletEmail;
+            $user->eth_address = strtolower($address);
+            $user->password = bcrypt(Str::random(32));
+            $user->save();
         }
 
         // Ensure eth_address is set if user was found by email
         if ($user && ! $user->eth_address) {
-            $user->update(['eth_address' => strtolower($address)]);
+            $user->eth_address = strtolower($address);
+            $user->save();
         }
 
         if (! $user) {

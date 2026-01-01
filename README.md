@@ -96,6 +96,26 @@ protected $fillable = [
 ];
 ```
 
+## Styling
+
+Create a custom Filament theme if you haven't already:
+
+```bash
+php artisan make:filament-theme
+```
+
+Then add the plugin's views to your theme CSS file (`resources/css/filament/admin/theme.css`) using the `@source` directive:
+
+```css
+@source '../../../../vendor/geof-dev/filament-web3-auth/resources/views/**/*.blade.php';
+```
+
+Finally, rebuild your assets:
+
+```bash
+npm run build
+```
+
 ## Adding Wallet Manager to Profile
 
 The easiest way is to use the plugin's EditProfile page in your panel:

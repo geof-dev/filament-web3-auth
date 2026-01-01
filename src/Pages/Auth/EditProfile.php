@@ -29,11 +29,8 @@ class EditProfile extends BaseEditProfile
 
         return Section::make()
             ->heading(__('filament-web3-auth::messages.wallet_section'))
-            ->compact()
             ->schema([
-                Group::make([
-                    View::make('filament-web3-auth::components.wallet-manager'),
-                ]),
+                View::make('filament-web3-auth::components.wallet-manager'),
             ]);
     }
 }

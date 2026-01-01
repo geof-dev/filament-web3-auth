@@ -3,15 +3,15 @@
     $hasWallet = !empty($user->eth_address);
 @endphp
 
-<div class="space-y-4" id="wallet-manager">
+<div id="wallet-manager">
     @if($hasWallet)
-        <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+        <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="flex items-center justify-center w-10 h-10 rounded-full bg-success-100 dark:bg-success-900">
+                <div class="flex items-center justify-center w-10 h-10 rounded-full bg-success-100 dark:bg-success-500/20">
                     <x-heroicon-o-check-circle class="w-6 h-6 text-success-600 dark:text-success-400" />
                 </div>
                 <div>
-                    <p class="text-sm font-medium text-gray-900 dark:text-white">
+                    <p class="text-sm font-medium text-gray-950 dark:text-white">
                         {{ __('filament-web3-auth::messages.wallet_connected') }}
                     </p>
                     <p class="text-sm text-gray-500 dark:text-gray-400 font-mono">
@@ -19,22 +19,23 @@
                     </p>
                 </div>
             </div>
-            <button
+            <x-filament::button
                 type="button"
                 id="disconnect-wallet-btn"
-                class="fi-btn fi-btn-color-danger fi-btn-size-sm"
+                color="danger"
+                size="sm"
             >
                 {{ __('filament-web3-auth::messages.disconnect_wallet') }}
-            </button>
+            </x-filament::button>
         </div>
     @else
-        <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+        <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700">
+                <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-white/10">
                     <x-heroicon-o-wallet class="w-6 h-6 text-gray-500 dark:text-gray-400" />
                 </div>
                 <div>
-                    <p class="text-sm font-medium text-gray-900 dark:text-white">
+                    <p class="text-sm font-medium text-gray-950 dark:text-white">
                         {{ __('filament-web3-auth::messages.no_wallet_connected') }}
                     </p>
                     <p class="text-sm text-gray-500 dark:text-gray-400">
@@ -42,18 +43,19 @@
                     </p>
                 </div>
             </div>
-            <button
+            <x-filament::button
                 type="button"
                 id="connect-wallet-btn"
-                class="fi-btn fi-btn-color-primary fi-btn-size-sm"
+                color="primary"
+                size="sm"
             >
                 {{ __('filament-web3-auth::messages.connect_wallet_btn') }}
-            </button>
+            </x-filament::button>
         </div>
     @endif
 
-    <p id="wallet-error" class="text-sm text-danger-600 dark:text-danger-400 hidden"></p>
-    <p id="wallet-success" class="text-sm text-success-600 dark:text-success-400 hidden"></p>
+    <p id="wallet-error" class="mt-2 text-sm text-danger-600 dark:text-danger-400 hidden"></p>
+    <p id="wallet-success" class="mt-2 text-sm text-success-600 dark:text-success-400 hidden"></p>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
