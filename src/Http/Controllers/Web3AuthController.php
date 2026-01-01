@@ -203,7 +203,9 @@ class Web3AuthController extends Controller
 
     protected function getUserModel(): string
     {
-        return config('filament-web3-auth.user_model', config('auth.providers.users.model'));
+        return config('filament-web3-auth.user_model')
+            ?? config('auth.providers.users.model')
+            ?? \App\Models\User::class;
     }
 
     protected function shouldAutoRegister(): bool
