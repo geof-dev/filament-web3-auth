@@ -65,7 +65,6 @@ public function panel(Panel $panel): Panel
 |--------|-------------|---------|
 | `autoRegister(bool)` | Auto-create users on wallet login | `true` |
 | `showOnLogin(bool)` | Show connect button on login page | `true` |
-| `showOnProfile(bool)` | Show wallet manager on profile page | `true` |
 | `signatureMessage(string)` | Custom signature message template | Config value |
 
 ## Configuration
@@ -99,19 +98,25 @@ protected $fillable = [
 
 ## Adding Wallet Manager to Profile
 
-To add wallet management to your custom profile page:
+The easiest way is to use the plugin's EditProfile page in your panel:
 
 ```php
-use Filament\Forms\Components\View;
+use GeofDev\FilamentWeb3Auth\Pages\Auth\EditProfile;
 
-public function form(Form $form): Form
+public function panel(Panel $panel): Panel
 {
-    return $form
-        ->schema([
-            // ... other fields
-            View::make('filament-web3-auth::components.wallet-manager'),
-        ]);
+    return $panel
+        // ...
+        ->profile(EditProfile::class);
 }
+```
+
+Or add the component manually to your custom profile page:
+
+```php
+use Filament\Schemas\Components\View;
+
+View::make('filament-web3-auth::components.wallet-manager')
 ```
 
 ## Testing

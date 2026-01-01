@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'wallet_section' => 'Portefeuille Crypto',
     'connect_with_wallet' => 'Connecter avec un portefeuille crypto',
     'connecting' => 'Connexion...',
 

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'wallet_section' => 'Crypto Wallet',
     'connect_with_wallet' => 'Connect with Crypto Wallet',
     'connecting' => 'Connecting...',
 

@@ -14,8 +14,6 @@ class FilamentWeb3AuthPlugin implements Plugin
 
     protected bool $showOnLogin = true;
 
-    protected bool $showOnProfile = true;
-
     protected ?string $signatureMessage = null;
 
     public static function make(): static
@@ -47,13 +45,6 @@ class FilamentWeb3AuthPlugin implements Plugin
         return $this;
     }
 
-    public function showOnProfile(bool $condition = true): static
-    {
-        $this->showOnProfile = $condition;
-
-        return $this;
-    }
-
     public function signatureMessage(string $message): static
     {
         $this->signatureMessage = $message;
@@ -69,11 +60,6 @@ class FilamentWeb3AuthPlugin implements Plugin
     public function shouldShowOnLogin(): bool
     {
         return $this->showOnLogin;
-    }
-
-    public function shouldShowOnProfile(): bool
-    {
-        return $this->showOnProfile;
     }
 
     public function getSignatureMessage(): ?string
@@ -92,13 +78,6 @@ class FilamentWeb3AuthPlugin implements Plugin
             FilamentView::registerRenderHook(
                 PanelsRenderHook::AUTH_LOGIN_FORM_AFTER,
                 fn (): string => Blade::render("@include('filament-web3-auth::components.connect-button')"),
-            );
-        }
-
-        if ($this->showOnProfile) {
-            FilamentView::registerRenderHook(
-                PanelsRenderHook::AUTH_EDIT_PROFILE_FORM_AFTER,
-                fn (): string => Blade::render("@include('filament-web3-auth::components.wallet-manager')"),
             );
         }
     }
