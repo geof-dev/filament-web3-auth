@@ -1,7 +1,7 @@
 # Filament Web3 Auth
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/geof-dev/filament-web3-auth.svg?style=flat-square)](https://packagist.org/packages/geof/filament-web3-auth)
-[![Total Downloads](https://img.shields.io/packagist/dt/geof-dev/filament-web3-auth.svg?style=flat-square)](https://packagist.org/packages/geof/filament-web3-auth)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/geof-dev/filament-web3-auth.svg?style=flat-square)](https://packagist.org/packages/geof-dev/filament-web3-auth)
+[![Total Downloads](https://img.shields.io/packagist/dt/geof-dev/filament-web3-auth.svg?style=flat-square)](https://packagist.org/packages/geof-dev/filament-web3-auth)
 
 A Filament v4 plugin for Web3 wallet authentication (MetaMask, and other EIP-1193 compatible wallets).
 
