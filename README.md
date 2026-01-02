@@ -5,6 +5,10 @@
 
 A Filament v4 plugin for Web3 wallet authentication (MetaMask, and other EIP-1193 compatible wallets).
 
+<p align="center">
+    <img src="art/banner.jpeg" alt="Filament Web3 Auth" style="width:100%; max-width:800px;">
+</p>
+
 ## Features
 
 - Login with crypto wallet (MetaMask, etc.)
@@ -38,6 +42,18 @@ Optionally publish the views:
 
 ```bash
 php artisan vendor:publish --tag="filament-web3-auth-views"
+```
+
+Add the plugin's views to your Filament theme CSS file (e.g., `resources/css/filament/admin/theme.css`):
+
+```css
+@source '../../../../vendor/geof-dev/filament-web3-auth/resources/views/**/*.blade.php';
+```
+
+Then rebuild your assets:
+
+```bash
+npm run build
 ```
 
 ## Usage
@@ -94,26 +110,6 @@ protected $fillable = [
     'password',
     'eth_address',
 ];
-```
-
-## Styling
-
-Create a custom Filament theme if you haven't already:
-
-```bash
-php artisan make:filament-theme
-```
-
-Then add the plugin's views to your theme CSS file (`resources/css/filament/admin/theme.css`) using the `@source` directive:
-
-```css
-@source '../../../../vendor/geof-dev/filament-web3-auth/resources/views/**/*.blade.php';
-```
-
-Finally, rebuild your assets:
-
-```bash
-npm run build
 ```
 
 ## Adding Wallet Manager to Profile
